@@ -4,6 +4,7 @@
     <div class="container">
       <h1>Create Post</h1>
       <form method="POST" action="{{route('admin.posts.store')}}">
+        @csrf
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" class="form-control" name="title" placeholder="Add Title">
@@ -13,8 +14,8 @@
           <input type="text" class="form-control" name="url" placeholder="Add Url Image">
         </div>
         <div class="form-group">
-          <label for="slug">Description</label>
-          <textarea type="text" class="form-control" name="slug" placeholder="Add Description" rows="6"></textarea>
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" name="description" placeholder="Add Description" rows="6"></textarea>
         </div>
         <button class="btn btn-success" type="submit">Create</button>
       </form> 
