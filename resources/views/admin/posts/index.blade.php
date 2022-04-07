@@ -24,7 +24,12 @@
                         <td>{{$post->slug}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
-                            {{-- Form <button>Delete</button> --}}
+
+                            <form method="POST" action="{{route('admin.posts.destroy', $post->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

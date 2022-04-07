@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
       <h1>Edit Post</h1>
-      <form method="POST" action="°">
+      <form method="POST" action="{{route('admin.posts.update', $post->id)}}">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -18,7 +18,7 @@
           <label for="description">Description</label>
           <textarea type="text" class="form-control" name="description" placeholder="Add Description" rows="6">{{old('title', $post->description)}}</textarea>
         </div>
-        <button class="btn btn-success" type="submit">Create</button>
+        <button class="btn btn-success" type="submit">Edit</button>
       </form> 
     </div>
 @endsection

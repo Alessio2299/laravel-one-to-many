@@ -38,6 +38,11 @@ class PostController extends Controller
      */
     public function store(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required|min:1',
+            'url' => 'nullable|url',
+            'description' => 'nullable|min:5'
+        ]);
         $data = $request->all();
         $slug = Str::slug($data['title']);
         $counter = 1;
@@ -81,9 +86,33 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:1',
+            'url' => 'nullable|url',
+            'description' => 'nullable|min:5'
+        ]);
+        $data = $request->all();
+
+        $slug = Str::slug($data['title']);
+        
+        if($post->slug != $slug){
+
+            $counter = 1;
+
+            while (Post::where('slug', $slug)->first()){
+                $slug = Str::slug($data['title']) . '-' . $counter;
+                $counter++;
+            }
+
+            $data['slug'] = $slug;
+        }
+        
+        $post->update($data);
+        $post->save();
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -92,8 +121,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }
