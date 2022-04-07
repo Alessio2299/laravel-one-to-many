@@ -15,6 +15,15 @@
           <input type="text" class="form-control" name="url" placeholder="Add Url Image" value="{{old('title', $post->url)}}">
         </div>
         <div class="form-group">
+          <label for="category_id">Category</label>
+          <select class="form-control" id="category_id" name="category_id">
+            <option value="">Choose a category</option>
+            @foreach ($categories as $category)
+              <option {{old('id', $category->id) == $post->category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group">
           <label for="description">Description</label>
           <textarea type="text" class="form-control" name="description" placeholder="Add Description" rows="6">{{old('title', $post->description)}}</textarea>
         </div>
