@@ -17,7 +17,7 @@
           <label for="description">Description</label>
           <textarea type="text" class="form-control" name="description" placeholder="Add Description" rows="6"></textarea>
         </div>
-        <button class="btn btn-success" type="submit">Create</button>
+        <button type="submit" class="btn btn-success" type="submit">Create</button>
       </form> 
     </div>
 @endsection

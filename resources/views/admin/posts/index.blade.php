@@ -11,6 +11,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Category</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <td>{{$post->title}}</td>
                         <td>{{$post->description}}</td>
                         <td>{{$post->slug}}</td>
+                        <td>{{$post->category->name}}</td>
                         <td>
                             <a class="btn btn-secondary" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
 
